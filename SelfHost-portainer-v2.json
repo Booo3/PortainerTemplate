@@ -179,6 +179,90 @@
             "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ombi-logo.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Krusader",
+            "name": "Krusader",
+            "image": "ich777/krusader",
+            "description": "Krusader is an advanced orthodox file manager for KDE and other desktops in the Unix world. It is similar to the console-based GNU Midnight Commander, GNOME Commander for the GNOME desktop environment, or Total Commander for Windows, all of which can trace their paradigmatic features to the original Norton Commander for DOS. It supports extensive archive handling, mounted filesystem support, FTP, advanced search, viewer/editor, directory synchronisation, file content comparisons, batch renaming, etc.\n\nLanguage Notice: Enter your prefered locales, you can find a full list of supported languages in: '/usr/share/i18n/SUPPORTED' simply open up a console from the Container and type in 'cat /usr/share/i18n/SUPPORTED' (eg: 'en_US.UTF-8 UTF8' or 'de_DE.UTF-8 UTF-8', 'fr_FR.UTF-8 UTF-8'...)",
+            "categories": [
+                "tools"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "9090:8080/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/krusader",
+                    "bind": "/docker/krusader"
+                },
+                {
+                    "container": "/mnt/hostdisk",
+                    "bind": "/"
+                }
+            ],
+            "env": [
+                {
+                    "name": "USER_LOCALES",
+                    "default": "en_US.UTF-8 UTF-8",
+                    "label": "USER_LOCALES",
+                    "description": "Enter your prefered locales, you can find a full list of supported languages in: '/usr/share/i18n/SUPPORTED' simply open up a console from the Container and type in 'cat /usr/share/i18n/SUPPORTED' (eg: 'en_US.UTF-8 UTF8' or 'de_DE.UTF-8 UTF-8', 'fr_FR.UTF-8 UTF-8'...)"
+                },
+                {
+                    "name": "RUNASROOT",
+                    "default": "false",
+                    "label": "RUNASROOT",
+                    "description": "Set this variable to 'true' if you want to run Krusader as root to edit system files (please remember you have to also change the Data Path to edit system level files)"
+                },
+                {
+                    "name": "NOVNC_RESIZE",
+                    "default": "remote",
+                    "label": "NOVNC_RESIZE",
+                    "description": "Local Scaling"
+                },
+                {
+                    "name": "CUSTOM_RES_W",
+                    "default": "1280",
+                    "label": "CUSTOM_RES_W",
+                    "description": "Enter the preferred resolution width"
+                },
+                {
+                    "name": "CUSTOM_RES_H",
+                    "default": "768",
+                    "label": "CUSTOM_RES_H",
+                    "description": "Enter the preferred resolution height"
+                }
+            ],
+            "logo": "https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/krusader.png",
+            "network_mode": "bridge",
+            "type": 1
+        },
+        {
+            "title": "Gitea",
+            "name": "Gitea",
+            "image": "gitea/gitea",
+            "description": "Gitea: Git with a cup of tea - The goal of this project is to make the easiest, fastest, and most painless way of setting up a self-hosted Git service. Using Go, this can be done with an independent binary distribution across all platforms which Go supports, including Linux, macOS, and Windows on x86, amd64, ARM and PowerPC architectures. Want to try it before doing anything else? Do it with the online demo! This project has been forked from Gogs.",
+            "categories": [
+                "tools",
+                "web"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "ports": [
+                "2222:22/tcp",
+                "3000:3000/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/data",
+                    "bind": "/mnt/user/appdata/gitea"
+                }
+            ],
+            "logo": "https://raw.githubusercontent.com/fanningert/unraid-docker-templates/master/fanningert/icons/gitea.png",
+            "network_mode": "bridge",
+            "type": 1
         }
     ]
 }
