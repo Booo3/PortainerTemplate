@@ -1,0 +1,16 @@
+[
+  {
+    "title": "SyncTube",
+    "name": "SyncTube",
+    "image": "littlestache/synctube",
+    "description": " DESCRIPTION Synchronized video viewing with chat and other features. Lightweight modern implementation and very easy way to run locally.\n\n    Supported players: • Youtube (videos, streams and playlists) • RAW MP4 videos and M3U8 playlists (or any other media format supported in browser) • Iframes (without sync)\n\n    How to use?\n\n        Login with any nickname.\n        Add your video url with \"plus\" button below (youtube or direct link to mp4 for example).\n        Now it plays and syncs for all page users.\n        You can click \"leader\" button to get access to global video controls (play/pause, time setting, playback speed).\n        If you want to restrict permissions or add admins/emotes, see Configuration section.\n\n    Live demo: https://synctube-example.herokuapp.com/\n\n    NOTES • Run the following cmds before building the container: 'mkdir -m755 /mnt/user/appdata/synctube' and 'curl https://raw.githubusercontent.com/SmartPhoneLover/unraid-docker-templates/main/templates/dependencies/synctube/config.json --output /mnt/user/appdata/synctube/config.json'. • There's a Android client to connect to the server: 'https://github.com/RblSb/SyncTubeApp', but you will have to compile it yourself. • Extra files (state.json, users.json) and directories (/crashes, /logs) will be generated inside '/../appdata/synctube/ dir, once launched. If you don't want them to be publicly available, change the Path settings from RW (read-write) to RO (read-only).\n\n    VERSION 1.0 (2022-02-03)\n",
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "4200:4200/tcp"
+    ],
+    "logo": "https://raw.githubusercontent.com/SmartPhoneLover/unraid-docker-templates/main/templates/icons/synctube.png",
+    "network_mode": "bridge",
+    "type": 1
+  }
+]
