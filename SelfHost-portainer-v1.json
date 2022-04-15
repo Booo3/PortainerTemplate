@@ -39,7 +39,11 @@
     "volumes": [
       {
         "container": "/config",
-        "bind": "/docker/vaultwarden/"
+        "bind": "/docker/vaultwarden/config"
+      },
+      {
+        "container": "/data",
+        "bind": "/docker/vaultwarden/data"
       }
     ],
     "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/bitwarden.png",
@@ -259,6 +263,48 @@
       }
     ],
     "logo": "https://raw.githubusercontent.com/fanningert/unraid-docker-templates/master/fanningert/icons/gitea.png",
+    "network_mode": "bridge",
+    "type": 1
+  },
+  {
+    "title": "mariadb",
+    "name": "mariadb",
+    "image": "linuxserver/mariadb",
+    "description": "An Enhanced drop in replacement for Mysql",
+    "categories": [
+      "tools",
+      "web"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "3306:3306/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/docker/mariadb"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "default": "99",
+        "label": "PUID"
+      },
+      {
+        "name": "PGID",
+        "default": "100",
+        "label": "PGID"
+      },
+      {
+        "name": "MYSQL_ROOT_PASSWORD",
+        "default": "ChangeMe",
+        "label": "MYSQL_ROOT_PASSWORD",
+        "description": "Database Root Password Change It!!!"
+      }
+    ],
+    "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mariadb-icon.png",
     "network_mode": "bridge",
     "type": 1
   }
