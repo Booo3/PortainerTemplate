@@ -20,7 +20,12 @@
           "proto": "tcp"
         }
       ],
-      "volumes": [],
+      "volumes": [
+        {
+          "container": "/usr/src/app/user",
+          "bind": "/docker/synctube/"
+        }
+      ],
       "env": [],
       "command": [],
       "devices": [],
@@ -187,6 +192,55 @@
       "sysctls": [],
       "cap_add": [],
       "logo": "https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/firefox.png",
+      "network_mode": "bridge"
+    },
+    {
+      "title": "ombi",
+      "name": "ombi",
+      "image": "linuxserver/ombi",
+      "description": "Ombi allows you to host your own Plex Request and user management system.",
+      "categories": [
+        "tools",
+        "media"
+      ],
+      "platform": "linux",
+      "note": "",
+      "restart_policy": "unless-stopped",
+      "ports": [
+        {
+          "label": "WebUI",
+          "hport": "3579",
+          "cport": "3579",
+          "proto": "tcp"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/config",
+          "bind": "/docker/ombi",
+          "variable": ""
+        }
+      ],
+      "env": [
+        {
+          "name": "PUID",
+          "default": "99",
+          "label": "PUID",
+          "description": "Key 1"
+        },
+        {
+          "name": "PGID",
+          "default": "100",
+          "label": "PGID",
+          "description": "Key 2"
+        }
+      ],
+      "command": [],
+      "devices": [],
+      "labels": [],
+      "sysctls": [],
+      "cap_add": [],
+      "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/ombi-logo.png",
       "network_mode": "bridge"
     }
   ]
