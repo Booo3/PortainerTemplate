@@ -4,12 +4,77 @@
     "name": "SyncTube",
     "image": "littlestache/synctube",
     "description": " DESCRIPTION Synchronized video viewing with chat and other features. Lightweight modern implementation and very easy way to run locally.\n\n    Supported players: • Youtube (videos, streams and playlists) • RAW MP4 videos and M3U8 playlists (or any other media format supported in browser) • Iframes (without sync)\n\n    How to use?\n\n        Login with any nickname.\n        Add your video url with \"plus\" button below (youtube or direct link to mp4 for example).\n        Now it plays and syncs for all page users.\n        You can click \"leader\" button to get access to global video controls (play/pause, time setting, playback speed).\n        If you want to restrict permissions or add admins/emotes, see Configuration section.\n\n    Live demo: https://synctube-example.herokuapp.com/\n\n    NOTES • Run the following cmds before building the container: 'mkdir -m755 /mnt/user/appdata/synctube' and 'curl https://raw.githubusercontent.com/SmartPhoneLover/unraid-docker-templates/main/templates/dependencies/synctube/config.json --output /mnt/user/appdata/synctube/config.json'. • There's a Android client to connect to the server: 'https://github.com/RblSb/SyncTubeApp', but you will have to compile it yourself. • Extra files (state.json, users.json) and directories (/crashes, /logs) will be generated inside '/../appdata/synctube/ dir, once launched. If you don't want them to be publicly available, change the Path settings from RW (read-write) to RO (read-only).\n\n    VERSION 1.0 (2022-02-03)\n",
+    "categories": [
+      "Media"
+    ],
     "platform": "linux",
     "restart_policy": "unless-stopped",
     "ports": [
       "4200:4200/tcp"
     ],
     "logo": "https://raw.githubusercontent.com/SmartPhoneLover/unraid-docker-templates/main/templates/icons/synctube.png",
+    "network_mode": "bridge",
+    "type": 1
+  },
+  {
+    "title": "vaultwarden",
+    "name": "vaultwarden",
+    "image": "vaultwarden/server:latest",
+    "description": "This is a Bitwarden server API implementation written in Rust compatible with upstream Bitwarden clients*, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.",
+    "categories": [
+      "Tools ",
+      "Other"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "8080:80/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/docker/vaultwarden/"
+      }
+    ],
+    "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/bitwarden.png",
+    "network_mode": "bridge",
+    "type": 1
+  },
+  {
+    "title": "Nginx Proxy Manager",
+    "name": "Nginx Proxy Manager",
+    "image": "jc21/nginx-proxy-manager",
+    "description": "Nginx Proxy Manager enables you to easily forward to your websites running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt.",
+    "categories": [
+      "Proxy ",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "80:80/tcp",
+      "443:443/tcp",
+      "81:81/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/data",
+        "bind": "/docker/NginxProxyManager/data"
+      },
+      {
+        "container": "/etc/letsencrypt",
+        "bind": "/docker/NginxProxyManager/letsencrypt"
+      }
+    ],
+    "env": [
+      {
+        "name": "DB_SQLITE_FILE",
+        "default": "/data/database.sqlite",
+        "label": "DB_SQLITE_FILE",
+        "description": "Database"
+      }
+    ],
+    "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/proxy_mgr.png",
     "network_mode": "bridge",
     "type": 1
   }
