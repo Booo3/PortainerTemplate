@@ -307,5 +307,64 @@
     "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/mariadb-icon.png",
     "network_mode": "bridge",
     "type": 1
+  },
+  {
+    "title": "matrix",
+    "name": "matrix",
+    "image": "avhost/docker-matrix:latest",
+    "description": "Docker Image for the matrix chat server.",
+    "categories": [
+      "web",
+      "voip"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "8008:8008/tcp",
+      "8448:8448/tcp",
+      "3478:3478/tcp",
+      "3478:3478/udp"
+    ],
+    "volumes": [
+      {
+        "container": "/data",
+        "bind": "/docker/matrix"
+      }
+    ],
+    "env": [
+      {
+        "name": "SERVER_NAME",
+        "default": "coodieserver",
+        "label": "SERVER_NAME",
+        "description": "Server and domain name, mandatory, needed only for generate"
+      },
+      {
+        "name": "REPORT_STATS",
+        "default": "no",
+        "label": "REPORT_STATS",
+        "description": "statistic report, mandatory, values: yes or no, needed only for generate"
+      },
+      {
+        "name": "SYNAPSE_CACHE_FACTOR",
+        "default": "0.5",
+        "label": "SYNAPSE_CACHE_FACTOR",
+        "description": "https://github.com/matrix-org/synapse#id19"
+      },
+      {
+        "name": "MATRIX_UID",
+        "default": "99",
+        "label": "MATRIX_UID",
+        "description": "UID"
+      },
+      {
+        "name": "MATRIX_GID",
+        "default": "100",
+        "label": "MATRIX_GID",
+        "description": "GID"
+      }
+    ],
+    "logo": "https://raw.githubusercontent.com/A75G/docker-templates/master/templates/icons/matrix.png",
+    "network_mode": "bridge",
+    "type": 1
   }
 ]
